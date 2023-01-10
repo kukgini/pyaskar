@@ -16,9 +16,12 @@ async def main():
 
     records = 0
     scan_start = time.perf_counter()
-    async for row in store.scan("credential_exchange_v10", {}):
-        records += 1
-        print(f"name={row.name}, tags={row.tags}")
+    # async for row in store.scan("credential_exchange_v10", {}):
+    categories = ["connection","credential_exchange_v10"]
+    for category in categories:
+        async for row in store.scan(category, {}):
+            records += 1
+            print(f"category={category} name={row.name}, tags={row.tags}")
     dur = time.perf_counter() - scan_start
     print(f"scan duration ({records} records): {dur:0.2f}s")
 
