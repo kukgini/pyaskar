@@ -14,10 +14,9 @@ async def main():
         key_method="kdf:argon2i",
         pass_key="acapy")
 
+    categories = ["connection","credential_exchange_v10"]
     records = 0
     scan_start = time.perf_counter()
-    # async for row in store.scan("credential_exchange_v10", {}):
-    categories = ["connection","credential_exchange_v10"]
     for category in categories:
         async for row in store.scan(category, {}):
             records += 1
