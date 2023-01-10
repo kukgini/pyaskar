@@ -14,15 +14,13 @@ async def main():
         key_method="kdf:argon2i",
         pass_key="acapy")
 
-    rc = 0
-    tags = 0
+    records = 0
     scan_start = time.perf_counter()
     async for row in store.scan("credential_exchange_v10", {}):
-        rc += 1
-        tags += len(row.tags)
-        print(f"{row.value.decode('utf8')}")
+        records += 1
+        print(f"name={row.name}, tags={row.tags}")
     dur = time.perf_counter() - scan_start
-    print(f"scan duration ({rc} rows, {tags} tags): {dur:0.2f}s")
+    print(f"scan duration ({records} records): {dur:0.2f}s")
 
 if __name__ == "__main__":
     asyncio.run(main());
