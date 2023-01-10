@@ -20,7 +20,7 @@ async def main():
     async for row in store.scan("credential_exchange_v10", {}):
         rc += 1
         tags += len(row.tags)
-        print(f"{row}")
+        print(f"{row.value.decode('utf8')}")
     dur = time.perf_counter() - scan_start
     print(f"scan duration ({rc} rows, {tags} tags): {dur:0.2f}s")
 
