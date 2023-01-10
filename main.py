@@ -14,7 +14,13 @@ async def main():
         key_method="kdf:argon2i",
         pass_key="acapy")
 
-    categories = ["connection","credential_exchange_v10"]
+    categories = [
+        "schema_sent",
+        "cred_def_sent",
+        "connection",
+        "credential_exchange_v10",
+        "presentation_exchange_v10"
+    ]
     records = 0
     scan_start = time.perf_counter()
     for category in categories:
